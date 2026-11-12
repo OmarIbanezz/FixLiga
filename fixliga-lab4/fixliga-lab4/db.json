@@ -1,0 +1,12 @@
+{
+  "torneos": [
+    { "id": 1, "nombre": "Copa Interfacultades", "deporte": "Fútbol", "formato": "Fase de grupos", "participantes": 16, "fechaInicio": "2026-11-20", "estado": "Activo" },
+    { "id": 2, "nombre": "Torneo Relámpago Barrio Norte", "deporte": "Baloncesto", "formato": "Eliminación directa", "participantes": 8, "fechaInicio": "2026-12-05", "estado": "Programado" },
+    { "id": 3, "nombre": "Open de Ajedrez Universitario", "deporte": "Ajedrez", "formato": "Sistema suizo", "participantes": 24, "fechaInicio": "2026-12-12", "estado": "Programado" }
+  ],
+  "equipos": [
+    { "id": 1, "nombre": "Ingeniería FC", "torneoId": 1, "capitan": "Sergio Moreno", "contacto": "ingenieria@unilibre.edu.co" },
+    { "id": 2, "nombre": "Derecho United", "torneoId": 1, "capitan": "Laura Pérez", "contacto": "derecho@unilibre.edu.co" },
+    { "id": 3, "nombre": "Los Halcones", "torneoId": 2, "capitan": "Andrés Rojas", "contacto": "halcones@barrionorte.co" }
+  ]
+}
