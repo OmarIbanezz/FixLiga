@@ -1,0 +1,20 @@
+:root{--a:#0b2a8a;--g:#10a37f;--bg:#fff;--tx:#1a1a1a}
+body{font-family:Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:var(--tx);line-height:1.5}
+header{background:var(--a);color:#fff;padding:1rem;text-align:center}header span{color:#5ff0c3}
+nav a{color:#fff;margin:0 .6rem;text-transform:capitalize}
+main{max-width:1000px;margin:auto;padding:1rem}section{margin:2rem 0}
+form{display:grid;gap:.5rem;max-width:420px}label{display:grid;font-weight:bold}
+input,select,textarea{padding:.5rem;border:1px solid #666;border-radius:4px}
+button{background:var(--a);color:#fff;border:0;padding:.5rem 1rem;border-radius:4px;cursor:pointer}
+button:focus,a:focus,input:focus{outline:3px solid var(--g)}
+.err{color:#b00020}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.card{border:1px solid #ccc;border-radius:8px;padding:.8rem;margin:.5rem 0}
+.tablewrap{overflow-x:auto}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:.4rem}
+.slider{position:relative}.slider img{width:100%;height:auto;border-radius:8px}
+.cap{position:absolute;bottom:2.5rem;left:1rem;background:#000a;color:#fff;padding:.3rem .6rem}
+.chat .msgs{height:220px;overflow:auto;border:1px solid #ccc;padding:.5rem}.bot{color:var(--a)}.usr{text-align:right}
+.acc{background:#eee;padding:.3rem;text-align:right}.acc button{margin:0 .2rem}
+.skip{position:absolute;left:-999px}.skip:focus{left:0}
+.contraste{--bg:#000;--tx:#ff0}.contraste input,.contraste select,.contraste textarea{background:#222;color:#ff0}.contraste a{color:#0ff}
+.subrayado a{text-decoration:underline}
+footer{text-align:center;padding:1rem;background:#eee}

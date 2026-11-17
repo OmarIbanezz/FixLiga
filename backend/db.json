@@ -1,0 +1,11 @@
+{"productos":[
+{"id":1,"nombre":"Plan Colegios","precio":50000,"stock":100},
+{"id":2,"nombre":"Plan Clubes","precio":120000,"stock":100},
+{"id":3,"nombre":"Plan Profesional","precio":300000,"stock":50}],
+"torneos":[{"id":1,"nombre":"Interclases 2026","deporte":"Fútbol","formato":"Fase de grupos"}],
+"desarrolladores":[
+{"id":1,"nombre":"Kevin Santiago Monroy Ortíz","celular":"3001234567","foto":"https://i.pravatar.cc/120?img=11"},
+{"id":2,"nombre":"Sergio Moreno Tabares","celular":"3001234568","foto":"https://i.pravatar.cc/120?img=12"},
+{"id":3,"nombre":"Omar Santiago Ibáñez García","celular":"3001234569","foto":"https://i.pravatar.cc/120?img=13"},
+{"id":4,"nombre":"Santiago Ubaque Anzola","celular":"3001234570","foto":"https://i.pravatar.cc/120?img=14"}],
+"pqr":[],"pedidos":[]}
