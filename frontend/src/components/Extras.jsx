@@ -1,11 +1,11 @@
 import {useEffect,useState} from 'react'; import {api} from '../helpFetch.js'
 export function Slider(){
  const s=[
-  ['banner 1.png','Organiza tu torneo en segundos. Organiza. Simula. Vive el deporte.'],
-  ['banner 2.png','Eliminación directa, grupos y sistema suizo'],
-  ['banner 3.png','Simula tu torneo antes de jugarlo'],
-  ['banner 4.png','FixLiga para todos los deportes'],
-  ['banner 5.png','Planes desde $50.000: Colegios, Clubes y Profesional']]
+  ['banner_1.png','Organiza tu torneo en segundos. Organiza. Simula. Vive el deporte.'],
+  ['banner_2.png','Eliminación directa, grupos y sistema suizo'],
+  ['banner_3.png','Simula tu torneo antes de jugarlo'],
+  ['banner_4.png','FixLiga para todos los deportes'],
+  ['banner_5.png','Planes desde $50.000: Colegios, Clubes y Profesional']]
  const [i,setI]=useState(0),[pausa,setPausa]=useState(false)
  useEffect(()=>{if(pausa)return;const t=setInterval(()=>setI(x=>(x+1)%s.length),4000);return()=>clearInterval(t)},[pausa])
  return(<div className="slider" role="region" aria-roledescription="carrusel" aria-label="Publicidad FixLiga">
