@@ -1,4 +1,5 @@
 import {useEffect,useState} from 'react'; import {api} from '../helpFetch.js'
+const gh=r=>r.github?r.github.replace(/\/$/,'')+'.png':''
 export default function Crud({col,campos,foto}){
  const [rows,setRows]=useState([]),[f,setF]=useState({}),[err,setErr]=useState(''),[q,setQ]=useState('')
  const load=()=>api.get(col).then(setRows)
@@ -24,6 +25,9 @@ export default function Crud({col,campos,foto}){
   <p>{vis.length} de {rows.length} registros</p>
   <div className="tablewrap"><table><thead><tr>{foto&&<th>Foto</th>}{campos.map(c=><th key={c.n}>{c.label}</th>)}<th>Acciones</th></tr></thead>
    <tbody>{vis.length===0?<tr><td colSpan="9">Sin resultados</td></tr>:vis.map(r=><tr key={r.id}>
-    {foto&&<td><img src={r.foto} alt={`Foto de ${r.nombre}`} width="48" height="48"/></td>}
-    {campos.map(c=><td key={c.n}>{r[c.n]}</td>)}
+    {foto&&<td><img src={r.foto||gh(r)} alt={`Foto de ${r.nombre}`} width="48" height="48"
+      onError={e=>{if(gh(r)&&e.currentTarget.src!==gh(r)){e.currentTarget.src=gh(r)}}}/></td>}
+    {campos.map(c=><td key={c.n}>{/^https?:\/\//.test(String(r[c.n]))
+      ?<a href={r[c.n]} target="_blank" rel="noreferrer">{String(r[c.n]).replace('https://github.com/','@')}</a>
+      :r[c.n]}</td>)}
     <td><button onClick={()=>setF(r)}>Editar</button> <button onClick={()=>del(r.id)}>Eliminar</button></td></tr>)}</tbody></table></div></div>)}

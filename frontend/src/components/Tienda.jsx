@@ -12,6 +12,7 @@ export default function Tienda(){
   if(!/^\d{16}$/.test(pago.tarjeta||'')) return setMsg('Tarjeta: 16 dígitos')
   if(!/^(0[1-9]|1[0-2])\/\d{2}$/.test(pago.exp||'')) return setMsg('Vencimiento MM/AA')
   if(!/^\d{3}$/.test(pago.cvv||'')) return setMsg('CVV: 3 dígitos')
+    if(!pago.acepto) return setMsg('Debe aceptar el tratamiento de datos personales')  
   const r=await api.post('pedidos',{cliente:pago.correo,items:cart})
   if(r.error) return setMsg(r.error)
   setFac(r); setCart([]); setMsg(''); load()}
@@ -27,6 +28,7 @@ export default function Tienda(){
     <label>Tarjeta<input inputMode="numeric" maxLength="16" onChange={e=>setPago({...pago,tarjeta:e.target.value})}/></label>
     <label>Vence (MM/AA)<input maxLength="5" onChange={e=>setPago({...pago,exp:e.target.value})}/></label>
     <label>CVV<input type="password" maxLength="3" onChange={e=>setPago({...pago,cvv:e.target.value})}/></label>
+        <label><input type="checkbox" onChange={e=>setPago({...pago,acepto:e.target.checked})}/> Acepto el tratamiento de mis datos personales (<a href="#datos">ver política</a>)</label>
     {msg&&<p role="alert" className="err">{msg}</p>}<button>Pagar</button></form>
    {fac&&<section className="card" aria-live="polite"><h4>Factura #{fac.id}</h4><p>Cliente: {fac.cliente}</p>
     {fac.items.map(i=><p key={i.id}>{i.nombre} x{i.cant}</p>)}<p>IVA incl.: {money(fac.iva)}</p><p><strong>Total: {money(fac.total)}</strong></p></section>}

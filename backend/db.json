@@ -30,27 +30,38 @@
   "desarrolladores": [
     {
       "id": 1,
-      "nombre": "Kevin Monroy",
-      "celular": "3001234567",
-      "foto": "https://i.pravatar.cc/120?img=11"
+      "nombre": "Nicolas Daza",
+      "celular": "3123659700",
+      "foto": "/devs/nicolas.jpg",
+      "github": "https://github.com/dazzA777-ONCE"
     },
     {
       "id": 2,
-      "nombre": "Sergio Moreno Tabares",
-      "celular": "3001234568",
-      "foto": "https://i.pravatar.cc/120?img=12"
+      "nombre": "Omar Santiago Ibáñez García",
+      "celular": "3134928612",
+      "foto": "/devs/omar.jpg",
+      "github": "https://github.com/OmarIbanezz"
     },
     {
       "id": 3,
-      "nombre": "Omar Santiago Ibáñez García",
-      "celular": "3001234569",
-      "foto": "https://i.pravatar.cc/120?img=13"
+      "nombre": "Santiago Ubaque Anzola",
+      "celular": "3244613753",
+      "foto": "/devs/santiago.jpg",
+      "github": "https://github.com/SantiagoUbaque"
     },
     {
       "id": 4,
-      "nombre": "Santiago Ubaque Anzola",
-      "celular": "3001234570",
-      "foto": "https://i.pravatar.cc/120?img=14"
+      "nombre": "Kevin Santiago Monroy Ortíz",
+      "celular": "3209357612",
+      "foto": "/devs/kevin.jpg",
+      "github": "https://github.com/kevinsmonroy"
+    },
+    {
+      "id": 5,
+      "nombre": "Sergio Moreno Tabares",
+      "celular": "3143089129",
+      "foto": "/devs/sergio.jpg",
+      "github": "https://github.com/SergioMotab"
     }
   ],
   "pqr": [],
