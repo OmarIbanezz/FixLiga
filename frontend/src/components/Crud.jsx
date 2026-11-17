@@ -10,8 +10,12 @@ export default function Crud({col,campos,foto}){
  const del=async id=>{if(window.confirm(`¿Seguro que desea ELIMINAR el registro ${id}?`)){await api.del(col,id);load()}}
  return(<div>
   <form onSubmit={save} noValidate aria-label={`Formulario ${col}`}>
-   {campos.map(c=><label key={c.n}>{c.label}
-    <input type={c.type||'text'} value={f[c.n]??''} required onChange={e=>setF({...f,[c.n]:e.target.value})}/></label>)}
+      {campos.map(c=><label key={c.n}>{c.label}
+    {c.opts
+     ?<select value={f[c.n]??''} onChange={e=>setF({...f,[c.n]:e.target.value})}>
+       <option value="">Seleccione</option>{c.opts.map(o=><option key={o}>{o}</option>)}</select>
+     :<input type={c.type||'text'} value={f[c.n]??''} required onChange={e=>setF({...f,[c.n]:e.target.value})}/>}
+   </label>)}
    {err&&<p role="alert" className="err">{err}</p>}
    <button>{f.id?'Actualizar':'Crear'}</button>{f.id&&<button type="button" onClick={()=>setF({})}>Cancelar</button>}
   </form>

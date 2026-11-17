@@ -1,13 +1,15 @@
 import Crud from './components/Crud.jsx'; import Tienda from './components/Tienda.jsx'
 import {Slider,Acordeon,PQR,Chat,Accesibilidad} from './components/Extras.jsx'
 const nom={re:/^[A-Za-zÁÉÍÓÚáéíóúñÑ0-9 ]{3,}$/,msg:'Mínimo 3 caracteres alfanuméricos'}
-const torneos=[{n:'nombre',label:'Torneo',...nom},{n:'deporte',label:'Deporte',...nom},{n:'formato',label:'Formato',...nom}]
+const torneos=[{n:'nombre',label:'Torneo',...nom},
+ {n:'deporte',label:'Deporte',opts:['Fútbol','Baloncesto','Voleibol','Tenis','Ajedrez','Microfútbol'],re:/.+/,msg:'Elija un deporte'},
+ {n:'formato',label:'Formato',opts:['Todos contra todos','Eliminación directa','Fase de grupos','Sistema suizo'],re:/.+/,msg:'Elija un formato'}]
 const inv=[{n:'nombre',label:'Producto',...nom},{n:'precio',label:'Precio',type:'number',re:/^[1-9]\d*$/,msg:'Precio entero > 0'},{n:'stock',label:'Stock',type:'number',re:/^\d+$/,msg:'Stock entero >= 0'}]
 const devs=[{n:'nombre',label:'Nombre',re:/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]{3,}$/,msg:'Nombre: solo letras'},
  {n:'celular',label:'Celular',re:/^3\d{9}$/,msg:'Celular: 10 dígitos iniciando en 3'},{n:'foto',label:'URL foto',re:/^https?:\/\/.+/,msg:'URL inválida'}]
 export default function App(){return(<>
  <a href="#main" className="skip">Saltar al contenido</a><Accesibilidad/>
- <header><h1>Fix<span>Liga</span></h1><p>Organiza. Simula. Vive el deporte.</p>
+ <header><h1><img src="/logoFixLiga.PNG" alt="FixLiga - Organiza. Simula. Vive el deporte." width="180" height="170"/></h1>
   <nav aria-label="Principal">{['tienda','torneos','inventario','equipo','pqr','datos','contacto'].map(s=><a key={s} href={'#'+s}>{s}</a>)}</nav></header>
  <main id="main">
   <section><Slider/><h2>Sobre nosotros</h2><Acordeon/></section>
