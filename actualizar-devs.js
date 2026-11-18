@@ -1,0 +1,9 @@
+// Ejecutar desde la raíz del repo: node actualizar-devs.js
+const fs=require('fs'),F='backend/db.json',d=JSON.parse(fs.readFileSync(F))
+d.desarrolladores=[
+ {id:1,nombre:'Nicolas Daza',celular:'3123659700',foto:'/devs/nicolas.jpg',github:'https://github.com/dazzA777-ONCE'},
+ {id:2,nombre:'Omar Santiago Ibáñez García',celular:'3134928612',foto:'/devs/omar.jpg',github:'https://github.com/OmarIbanezz'},
+ {id:3,nombre:'Santiago Ubaque Anzola',celular:'3244613753',foto:'/devs/santiago.jpg',github:'https://github.com/SantiagoUbaque'},
+ {id:4,nombre:'Kevin Santiago Monroy Ortíz',celular:'3209357612',foto:'/devs/kevin.jpg',github:'https://github.com/kevinsmonroy'},
+ {id:5,nombre:'Sergio Moreno Tabares',celular:'3143089129',foto:'/devs/sergio.jpg',github:'https://github.com/SergioMotab'}]
+fs.writeFileSync(F,JSON.stringify(d,null,2));console.log('Desarrolladores actualizados')
