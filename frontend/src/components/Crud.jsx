@@ -1,15 +1,15 @@
 import {useEffect,useState} from 'react'; import {api} from '../helpFetch.js'
 const gh=r=>r.github?r.github.replace(/\/$/,'')+'.png':''
-export default function Crud({col,campos,foto}){
- const [rows,setRows]=useState([]),[f,setF]=useState({}),[err,setErr]=useState(''),[q,setQ]=useState('')
+export default function Crud({col,campos,foto,onChange}){
+const [rows,setRows]=useState([]),[f,setF]=useState({}),[err,setErr]=useState(''),[q,setQ]=useState('')
  const load=()=>api.get(col).then(setRows)
  useEffect(()=>{load()},[col])
  const vis=rows.filter(r=>campos.some(c=>String(r[c.n]??'').toLowerCase().includes(q.trim().toLowerCase())))
  const save=async e=>{e.preventDefault()
   for(const c of campos) if(c.re&&!c.re.test(String(f[c.n]??''))){setErr(c.msg);return}
   setErr(''); const b={...f}; campos.forEach(c=>{if(c.type==='number')b[c.n]=Number(b[c.n])})
-  b.id?await api.put(col,b.id,b):await api.post(col,b); setF({}); load()}
- const del=async id=>{if(window.confirm(`¿Seguro que desea ELIMINAR el registro ${id}?`)){await api.del(col,id);load()}}
+  b.id?await api.put(col,b.id,b):await api.post(col,b); setF({}); load(); onChange&&onChange()}
+ const del=async id=>{if(window.confirm(`¿Seguro que desea ELIMINAR el registro ${id}?`)){await api.del(col,id);load();onChange&&onChange()}}
  return(<div>
   <form onSubmit={save} noValidate aria-label={`Formulario ${col}`}>
    {campos.map(c=><label key={c.n}>{c.label}

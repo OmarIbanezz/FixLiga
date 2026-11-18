@@ -1,4 +1,4 @@
-import {useState} from 'react'; import {api} from '../helpFetch.js'
+import {useState,useEffect} from 'react'; import {api} from '../helpFetch.js'
 // ---- Reglas por deporte ----
 const DEPORTES=['Fútbol','Microfútbol','Baloncesto','Voleibol','Tenis','Ajedrez']
 const FORMATOS=['Todos contra todos','Eliminación directa','Fase de grupos','Sistema suizo']
@@ -50,8 +50,12 @@ export const build=(f,ts,sp,sim)=>{
  const rondas=rr(ts).map((p,i)=>({nombre:`Fecha ${i+1}`,ms:p.map(([a,b])=>play(a,b,sp,sim))}))
  return {rondas,tablas:sim?[{nombre:'Tabla de posiciones',filas:tabla(rondas.flatMap(r=>r.ms),sp,ts)}]:[]}}
 // ---- Componente ----
-export default function Fixture(){
- const [f,setF]=useState({sp:DEPORTES[0],fm:FORMATOS[0],n:8,nombres:''}),[cfg,setCfg]=useState(null),[res,setRes]=useState(null),[msg,setMsg]=useState('')
+export default function Fixture({v}){
+ const [f,setF]=useState({sp:DEPORTES[0],fm:FORMATOS[0],n:8,nombres:''}),[cfg,setCfg]=useState(null),[res,setRes]=useState(null),[msg,setMsg]=useState(''),[torneos,setTorneos]=useState([]),[tid,setTid]=useState(''),[saved,setSaved]=useState([])
+ useEffect(()=>{api.get('torneos').then(setTorneos)},[v])
+ const cargarSaved=()=>tid?api.get('fixtures').then(d=>setSaved(d.filter(x=>String(x.torneoId)===String(tid)))):setSaved([])
+ useEffect(()=>{cargarSaved()},[tid])
+ const elegir=id=>{setTid(id);setRes(null);setCfg(null);const t=torneos.find(x=>String(x.id)===id);if(t)setF(p=>({...p,sp:t.deporte,fm:t.formato}))}
  const individual=['Tenis','Ajedrez'].includes(f.sp)
  const validar=()=>{let ts=f.nombres.split('\n').map(s=>s.trim()).filter(Boolean)
   if(ts.length){if(!ts.every(s=>/^[\wÁÉÍÓÚáéíóúñÑ .-]{1,30}$/.test(s)))return setMsg('Nombres: solo letras, números y espacios (máx. 30)')
@@ -63,9 +67,10 @@ export default function Fixture(){
   setMsg('');return ts}
  const generar=sim=>{const ts=validar();if(!ts)return;const c=cfg&&!sim?null:{ts};setCfg({ts});setRes({...build(f.fm,ts,f.sp,sim),sim})}
  const simular=()=>{if(!cfg)return setMsg('Primero genere el fixture');setMsg('');setRes({...build(f.fm,cfg.ts,f.sp,true),sim:true})}
- const guardar=async()=>{await api.post('fixtures',{deporte:f.sp,formato:f.fm,participantes:cfg.ts,rondas:res.rondas,tablas:res.tablas});setMsg('✅ Fixture guardado en la base de datos')}
+ const guardar=async()=>{await api.post('fixtures',{torneoId:tid||null,deporte:f.sp,formato:f.fm,participantes:cfg.ts,rondas:res.rondas,tablas:res.tablas});setMsg('✅ Fixture guardado en la base de datos');cargarSaved()}
  return(<div>
   <form onSubmit={e=>{e.preventDefault();generar(false)}} noValidate aria-label="Generador de fixtures">
+   <label>Torneo<select value={tid} onChange={e=>elegir(e.target.value)}><option value="">(Sin torneo: fixture libre)</option>{torneos.map(t=><option key={t.id} value={t.id}>{t.nombre}</option>)}</select></label>
    <label>Deporte<select value={f.sp} onChange={e=>setF({...f,sp:e.target.value})}>{DEPORTES.map(d=><option key={d}>{d}</option>)}</select></label>
    <label>Formato<select value={f.fm} onChange={e=>setF({...f,fm:e.target.value})}>{FORMATOS.map(d=><option key={d}>{d}</option>)}</select></label>
    <label>Cantidad de {individual?'jugadores':'equipos'} (2 a 32)<input type="number" min="2" max="32" value={f.n} onChange={e=>setF({...f,n:e.target.value})}/></label>
@@ -80,4 +85,9 @@ export default function Fixture(){
     {r.ms.map((m,j)=><p key={j}>{m.a} {m.x!==undefined?<strong>{m.x} - {m.y}</strong>:'vs'} {m.b}</p>)}</section>)}
    {res.tablas.map((t,i)=><div key={i} className="tablewrap"><h4>{t.nombre}</h4><table><thead><tr><th>Pos</th><th>{individual?'Jugador':'Equipo'}</th><th>PJ</th><th>GF</th><th>GC</th><th>Pts</th></tr></thead>
     <tbody>{t.filas.map((o,k)=><tr key={o.e}><td>{k+1}</td><td>{o.e}</td><td>{o.pj}</td><td>{o.gf}</td><td>{o.gc}</td><td>{o.pts}</td></tr>)}</tbody></table></div>)}
-  </div>}</div>)}
+  </div>}
+  {tid&&<div><h3>Fixtures guardados de este torneo</h3>
+   {saved.length===0&&<p>Aún no hay fixtures guardados.</p>}
+   {saved.map(x=><p key={x.id}>{x.deporte} · {x.formato} · {x.participantes.length} participantes{' '}
+    <button type="button" onClick={()=>{setCfg({ts:x.participantes});setRes({rondas:x.rondas,tablas:x.tablas,sim:x.tablas.length>0})}}>Ver</button>{' '}
+    <button type="button" onClick={async()=>{if(window.confirm('¿Eliminar este fixture?')){await api.del('fixtures',x.id);cargarSaved()}}}>Eliminar</button></p>)}</div>}</div>)}

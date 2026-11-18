@@ -25,6 +25,24 @@
       "nombre": "Interclases 2026",
       "deporte": "Fútbol",
       "formato": "Fase de grupos"
+    },
+    {
+      "deporte": "Ajedrez",
+      "formato": "Sistema suizo",
+      "nombre": "Campeeonato mundial 2026",
+      "id": 1795012253136
+    },
+    {
+      "nombre": "SuperLiga",
+      "deporte": "Fútbol",
+      "formato": "Todos contra todos",
+      "id": 1795031864770
+    },
+    {
+      "nombre": "Copa Konami",
+      "deporte": "Fútbol",
+      "formato": "Fase de grupos",
+      "id": 1795032900074
     }
   ],
   "desarrolladores": [
@@ -65,5 +83,173 @@
     }
   ],
   "pqr": [],
-  "pedidos": []
+  "pedidos": [],
+  "fixtures": [
+    {
+      "torneoId": "1795031864770",
+      "deporte": "Fútbol",
+      "formato": "Todos contra todos",
+      "participantes": [
+        "Equipo 1",
+        "Equipo 2",
+        "Equipo 3",
+        "Equipo 4",
+        "Equipo 5",
+        "Equipo 6",
+        "Equipo 7",
+        "Equipo 8"
+      ],
+      "rondas": [
+        {
+          "nombre": "Fecha 1",
+          "ms": [
+            {
+              "a": "Equipo 1",
+              "b": "Equipo 8"
+            },
+            {
+              "a": "Equipo 2",
+              "b": "Equipo 7"
+            },
+            {
+              "a": "Equipo 3",
+              "b": "Equipo 6"
+            },
+            {
+              "a": "Equipo 4",
+              "b": "Equipo 5"
+            }
+          ]
+        },
+        {
+          "nombre": "Fecha 2",
+          "ms": [
+            {
+              "a": "Equipo 1",
+              "b": "Equipo 7"
+            },
+            {
+              "a": "Equipo 8",
+              "b": "Equipo 6"
+            },
+            {
+              "a": "Equipo 2",
+              "b": "Equipo 5"
+            },
+            {
+              "a": "Equipo 3",
+              "b": "Equipo 4"
+            }
+          ]
+        },
+        {
+          "nombre": "Fecha 3",
+          "ms": [
+            {
+              "a": "Equipo 1",
+              "b": "Equipo 6"
+            },
+            {
+              "a": "Equipo 7",
+              "b": "Equipo 5"
+            },
+            {
+              "a": "Equipo 8",
+              "b": "Equipo 4"
+            },
+            {
+              "a": "Equipo 2",
+              "b": "Equipo 3"
+            }
+          ]
+        },
+        {
+          "nombre": "Fecha 4",
+          "ms": [
+            {
+              "a": "Equipo 1",
+              "b": "Equipo 5"
+            },
+            {
+              "a": "Equipo 6",
+              "b": "Equipo 4"
+            },
+            {
+              "a": "Equipo 7",
+              "b": "Equipo 3"
+            },
+            {
+              "a": "Equipo 8",
+              "b": "Equipo 2"
+            }
+          ]
+        },
+        {
+          "nombre": "Fecha 5",
+          "ms": [
+            {
+              "a": "Equipo 1",
+              "b": "Equipo 4"
+            },
+            {
+              "a": "Equipo 5",
+              "b": "Equipo 3"
+            },
+            {
+              "a": "Equipo 6",
+              "b": "Equipo 2"
+            },
+            {
+              "a": "Equipo 7",
+              "b": "Equipo 8"
+            }
+          ]
+        },
+        {
+          "nombre": "Fecha 6",
+          "ms": [
+            {
+              "a": "Equipo 1",
+              "b": "Equipo 3"
+            },
+            {
+              "a": "Equipo 4",
+              "b": "Equipo 2"
+            },
+            {
+              "a": "Equipo 5",
+              "b": "Equipo 8"
+            },
+            {
+              "a": "Equipo 6",
+              "b": "Equipo 7"
+            }
+          ]
+        },
+        {
+          "nombre": "Fecha 7",
+          "ms": [
+            {
+              "a": "Equipo 1",
+              "b": "Equipo 2"
+            },
+            {
+              "a": "Equipo 3",
+              "b": "Equipo 8"
+            },
+            {
+              "a": "Equipo 4",
+              "b": "Equipo 7"
+            },
+            {
+              "a": "Equipo 5",
+              "b": "Equipo 6"
+            }
+          ]
+        }
+      ],
+      "tablas": [],
+      "id": 1795031880785
+    }
+  ]
 }
